@@ -1,15 +1,15 @@
-const textInput = document.querySelector('input');
-console.log(textInput);
+const inputEl = document.querySelector('input[data-length="6"]');
 
-const activeBlur = (event) => {
-  const newTextInput = event.currentTarget.value;
-  const validLength = Number(textInput.getAttribute('data-length'));
-  if (newTextInput.length === validLength) {
-    textInput.classList.remove('invalid');
-    textInput.classList.add('valid');
+const handleInputClass = (remove, add) => {
+  inputEl.classList.remove(remove);
+  inputEl.classList.add(add);
+};
+
+const testingInputEL = () => {
+  if (inputEl.value.length === Number(inputEl.getAttribute('data-length'))) {
+    handleInputClass('invalid', 'valid');
   } else {
-    textInput.classList.remove('valid');
-    textInput.classList.add('invalid');
+    handleInputClass('valid', 'invalid');
   }
 };
-textInput.addEventListener('blur', activeBlur);
+inputEl.addEventListener('blur', testingInputEL);
